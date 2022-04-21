@@ -23,7 +23,6 @@ namespace Steer73.FormsApp.Views
       base.OnAppearing();
       LoadingFrame.IsVisible = true;
       await ViewModel.Initialize();
-      LoadingFrame.IsVisible = false;
     }
 
     protected UsersViewModel ViewModel
