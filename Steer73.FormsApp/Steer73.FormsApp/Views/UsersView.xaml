@@ -5,7 +5,7 @@
     x:Class="Steer73.FormsApp.Views.UsersView"
   xmlns:localViewmodel="clr-namespace:Steer73.FormsApp.ViewModels"
   >
-  
+ 
   <ContentPage.Padding>
     <OnPlatform x:TypeArguments="Thickness">
       <On Platform="Android, UWP">0</On>
@@ -43,11 +43,17 @@
         </ListView>
       </Frame>
 
-      
 
-      
-      
-      
+
+      <Frame x:Name="LoadingFrame" Grid.Row="0" Grid.RowSpan="2" VerticalOptions="Center" HorizontalOptions="Center" BorderColor="{StaticResource BackgroundColor}">
+        <StackLayout Orientation="Vertical" HeightRequest="150" WidthRequest="200" >
+
+          <ActivityIndicator IsRunning="True" Margin="0,50,0,0" VerticalOptions="Center" HorizontalOptions="Center" Color="{StaticResource BackgroundColor}" WidthRequest="30" HeightRequest="30" ></ActivityIndicator>
+          <Label FontSize="Title"  VerticalOptions="Center" HorizontalOptions="Center" VerticalTextAlignment="Center" TextColor="{StaticResource BackgroundColor}" Text="Loading..."></Label>
+        </StackLayout>
+      </Frame>
+
+
 
     </Grid>
   </ContentPage.Content>

@@ -21,8 +21,9 @@ namespace Steer73.FormsApp.Views
     protected override async void OnAppearing()
     {
       base.OnAppearing();
-
+      LoadingFrame.IsVisible = true;
       await ViewModel.Initialize();
+      LoadingFrame.IsVisible = false;
     }
 
     protected UsersViewModel ViewModel
@@ -40,6 +41,19 @@ namespace Steer73.FormsApp.Views
     private void MainSearchBar_TextChanged(object sender, TextChangedEventArgs e)
     {
       string searchTerm = e.NewTextValue;
+    }
+
+    private void DataListView_Refreshing(object sender, System.EventArgs e)
+    {
+      if (IsBusy)
+      {
+        DataListView.IsRefreshing = true;
+
+      }
+      else
+      {
+        DataListView.IsRefreshing= false;
+      }
     }
   }
 }
