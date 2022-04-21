@@ -2,4 +2,46 @@
 <Application xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Steer73.FormsApp.App">
+
+  <Application.Resources>
+    <Color x:Key="AppBackgroundColor">#f5f6fa</Color>
+    <Color x:Key="NavigationBarColor">#273c75</Color>
+    <Color x:Key="ElementTextColor">#dcdde1</Color>
+    <Color x:Key="ElementColor">#192a56</Color>
+    <Color x:Key="NormalTextColor">#273c75</Color>
+    <Color x:Key="NormalTextPlaceholderColor">#8c7ae6</Color>
+    <Color x:Key="WardingColor">#e1b12c</Color>
+    <Color x:Key="DangerColor">#c23616</Color>
+    <Color x:Key="SucessCollor">#44bd32</Color>
+
+    <Style TargetType="{x:Type ContentPage}"
+               ApplyToDerivedTypes="True">
+      <Setter Property="BackgroundColor"
+                    Value="{StaticResource AppBackgroundColor}" />
+    </Style>
+
+    <Style TargetType="Frame">
+      <Setter Property="BorderColor" Value="{StaticResource ElementColor}"/>
+      <Setter Property="BackgroundColor" Value="{StaticResource AppBackgroundColor}"/>
+      <Setter Property="CornerRadius" Value="35"/>
+      
+    </Style>
+
+    <Style TargetType="SearchBar">
+      <Setter Property="TextColor" Value="{StaticResource NormalTextColor}"/>
+      <Setter Property="Placeholder" Value="Search"/>
+      <Setter Property="PlaceholderColor" Value="{StaticResource NormalTextPlaceholderColor}"/>
+      <Setter Property="BackgroundColor" Value="Transparent"/>
+      <Setter Property="CancelButtonColor" Value="{StaticResource DangerColor}"/>
+    </Style>
+
+    <Style TargetType="ListView">
+      <Setter Property="RefreshControlColor" Value="{StaticResource ElementColor}"/>
+    </Style>
+    
+    
+    
+    
+
+  </Application.Resources>
 </Application>

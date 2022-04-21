@@ -4,5 +4,12 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="Steer73.FormsApp.Views.UsersView">
     <ContentPage.Content>
+
+    <StackLayout>
+      <Frame CornerRadius="35" BorderColor="{StaticResource }">
+        
+      </Frame>
+      
+    </StackLayout>
     </ContentPage.Content>
 </ContentPage>
