@@ -5,7 +5,8 @@
 
   <Application.Resources>
     <Color x:Key="ElementColor">#979392</Color>
-    <Color x:Key="BackgroundColor">white</Color>
+    <Color x:Key="BackgroundColor">wheat</Color>
+    <Color x:Key="ISSelectedColor">Gray</Color>
     <Color x:Key="DangerColor">red</Color>
     
 
@@ -34,6 +35,8 @@
 
     <Style TargetType="ListView">
       <Setter Property="RefreshControlColor" Value="{StaticResource ElementColor}"/>
+      <Setter Property="SeparatorColor" Value="{StaticResource ElementColor}"/>
+      <Setter Property="IsPullToRefreshEnabled" Value="True"/>
     </Style>
     
     

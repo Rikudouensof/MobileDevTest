@@ -132,4 +132,7 @@
       <Name>Steer73.FormsApp</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ProfileImage.png" />
+  </ItemGroup>
 </Project>

@@ -2,7 +2,10 @@
 <ContentPage
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    x:Class="Steer73.FormsApp.Views.UsersView">
+    x:Class="Steer73.FormsApp.Views.UsersView"
+  xmlns:localViewmodel="clr-namespace:Steer73.FormsApp.ViewModels"
+  >
+  
   <ContentPage.Padding>
     <OnPlatform x:TypeArguments="Thickness">
       <On Platform="Android, UWP">0</On>
@@ -19,16 +22,21 @@
       </Grid.RowDefinitions>
 
         <Frame Grid.Row="0">
-          <SearchBar ></SearchBar>
+          <SearchBar x:Name="MainSearchBar" TextChanged="MainSearchBar_TextChanged" ></SearchBar>
         </Frame>
 
       <Frame Grid.Row="1">
-        <ListView>
+        <ListView x:Name="DataListView" 
+                  ItemsSource="{Binding Users}"
+                  IsRefreshing="{Binding ISBusy}"
+                  Refreshing="DataListView_Refreshing"
+                  >
           <ListView.ItemTemplate>
             <DataTemplate>
-              <ImageCell Text="First Name" Detail="Last Name" 
+              <ImageCell Text="{Binding LastName}" Detail="{Binding FirstName}" 
                          DetailColor="{StaticResource BackgroundColor}"
-                         TextColor="{StaticResource BackgroundColor}" />
+                         TextColor="{StaticResource BackgroundColor}" 
+                         ImageSource="ProfileImage.png"/>
               
             </DataTemplate>
           </ListView.ItemTemplate>
