@@ -5,7 +5,6 @@ using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using MvvmHelpers.Commands;
 using Steer73.FormsApp.Framework;
 using Steer73.FormsApp.Model;
 using Xamarin.Forms;
@@ -23,7 +22,7 @@ namespace Steer73.FormsApp.ViewModels
     {
       _userService = userService;
       _messageService = messageService;
-      SearchText = new Xamarin.Forms.Command<string>(Search);
+      SearchText = new Command<string>(SearchAsync);
     }
 
     public async Task Initialize()
@@ -51,20 +50,29 @@ namespace Steer73.FormsApp.ViewModels
       }
     }
 
-    void Search( string term)
+    async void SearchAsync( string term)
     {
-      string lowerTerm = term.ToLower();
-      foreach (var item in Users)
+      if (string.IsNullOrEmpty(term))
       {
-        if (item.FirstName.ToLower().Contains(lowerTerm) || item.LastName.ToLower().Contains(lowerTerm))
+        term = String.Empty;
+
+      }
+      var mainList = await _userService.GetUsers();
+      string lowerTerm = term.ToLower();
+      var filteredResult = mainList.Where(m => m.LastName.ToLower().Contains(lowerTerm) || m.FirstName.ToLower().Contains(lowerTerm)).ToList();
+      foreach (var item in mainList)
+      {
+        if (!Users.Contains(item))
         {
           Users.Add(item);
         }
-        else
+        else if(!filteredResult.Contains(item))
         {
           Users.Remove(item);
         }
       }
+
+     
     }
 
 
