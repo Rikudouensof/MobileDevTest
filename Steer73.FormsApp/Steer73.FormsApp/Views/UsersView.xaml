@@ -22,7 +22,8 @@
       </Grid.RowDefinitions>
 
         <Frame Grid.Row="0">
-          <SearchBar x:Name="MainSearchBar" TextChanged="MainSearchBar_TextChanged" ></SearchBar>
+        <SearchBar x:Name="MainSearchBar" SearchCommand="{Binding SearchText}"
+                   SearchCommandParameter="{Binding Source={x:Reference MainSearchBar}, Path=Text}"></SearchBar>
         </Frame>
 
       <Frame Grid.Row="1">

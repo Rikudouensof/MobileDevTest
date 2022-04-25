@@ -21,7 +21,6 @@ namespace Steer73.FormsApp.Views
     protected override async void OnAppearing()
     {
       base.OnAppearing();
-      LoadingFrame.IsVisible = true;
       await ViewModel.Initialize();
     }
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -22,6 +23,7 @@ namespace Steer73.FormsApp.ViewModels
     {
       _userService = userService;
       _messageService = messageService;
+      SearchText = new Xamarin.Forms.Command<string>(Search);
     }
 
     public async Task Initialize()
@@ -30,6 +32,7 @@ namespace Steer73.FormsApp.ViewModels
       {
         
         IsBusy = true;
+      
 
         var users = await _userService.GetUsers();
 
@@ -48,26 +51,19 @@ namespace Steer73.FormsApp.ViewModels
       }
     }
 
-    public async Task Search()
+    void Search( string term)
     {
-      try
+      string lowerTerm = term.ToLower();
+      foreach (var item in Users)
       {
-        IsBusy = true;
-
-        var users = await _userService.GetUsers();
-
-        foreach (var user in users)
+        if (item.FirstName.ToLower().Contains(lowerTerm) || item.LastName.ToLower().Contains(lowerTerm))
         {
-          Users.Add(user);
+          Users.Add(item);
         }
-      }
-      catch (Exception ex)
-      {
-        await _messageService.ShowError(ex.Message);
-      }
-      finally
-      {
-        IsBusy = false;
+        else
+        {
+          Users.Remove(item);
+        }
       }
     }
 
@@ -84,9 +80,13 @@ namespace Steer73.FormsApp.ViewModels
       }
     }
 
-  
 
-    public bool IsBusy { get; set; }
+   
+
+
+    public ICommand SearchText { get; }
+
+    public bool IsBusy { get; set; } = true;
 
     public ObservableCollection<User> Users { get; set; } = new ObservableCollection<User>();
 
