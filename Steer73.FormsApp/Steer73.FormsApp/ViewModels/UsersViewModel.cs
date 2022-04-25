@@ -68,17 +68,7 @@ namespace Steer73.FormsApp.ViewModels
     }
 
 
-    public async void Refresh()
-    {
-      if (IsBusy)
-      {
-        await _messageService.ShowError("Contacts loading, please wait!");
-      }
-      else
-      {
-
-      }
-    }
+    
 
 
    
@@ -86,9 +76,39 @@ namespace Steer73.FormsApp.ViewModels
 
     public ICommand SearchText { get; }
 
-    public bool IsBusy { get; set; } = true;
+    private bool isBusy = false;
+    private string searchContacts = "Find Contact";
 
-    public ObservableCollection<User> Users { get; set; } = new ObservableCollection<User>();
+    public string SearchContacts
+    {
+      get => searchContacts;
+      set
+      {
+        if (value == searchContacts)
+        {
+          return;
+        }
+        searchContacts = value;
+        RPropertyChanged(nameof(SearchContacts));
+      }
+    }
+    public bool IsBusy
+    {
+      get => isBusy;
+      set
+      {
+        if (value == isBusy)
+        {
+          return;
+        }
+        isBusy = value;
+        RPropertyChanged(nameof(IsBusy));
+      }
+
+
+    }
+
+    public ObservableCollection<User> Users { get; } = new ObservableCollection<User>();
 
    
 

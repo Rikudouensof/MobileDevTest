@@ -36,6 +36,7 @@
     <Style TargetType="ListView">
       <Setter Property="RefreshControlColor" Value="{StaticResource ElementColor}"/>
       <Setter Property="SeparatorColor" Value="{StaticResource ElementColor}"/>
+      <Setter Property="IsPullToRefreshEnabled" Value="True"/>
     </Style>
     
     

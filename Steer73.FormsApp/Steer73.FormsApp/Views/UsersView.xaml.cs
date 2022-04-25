@@ -20,6 +20,7 @@ namespace Steer73.FormsApp.Views
 
     protected override async void OnAppearing()
     {
+     
       base.OnAppearing();
       await ViewModel.Initialize();
     }
@@ -41,17 +42,6 @@ namespace Steer73.FormsApp.Views
       string searchTerm = e.NewTextValue;
     }
 
-    private void DataListView_Refreshing(object sender, System.EventArgs e)
-    {
-      if (IsBusy)
-      {
-        DataListView.IsRefreshing = true;
-
-      }
-      else
-      {
-        DataListView.IsRefreshing= false;
-      }
-    }
+   
   }
 }

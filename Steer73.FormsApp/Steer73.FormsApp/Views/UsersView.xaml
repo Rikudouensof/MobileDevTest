@@ -5,7 +5,7 @@
     x:Class="Steer73.FormsApp.Views.UsersView"
   xmlns:localViewmodel="clr-namespace:Steer73.FormsApp.ViewModels"
   >
- 
+
   <ContentPage.Padding>
     <OnPlatform x:TypeArguments="Thickness">
       <On Platform="Android, UWP">0</On>
@@ -23,14 +23,15 @@
 
         <Frame Grid.Row="0">
         <SearchBar x:Name="MainSearchBar" SearchCommand="{Binding SearchText}"
-                   SearchCommandParameter="{Binding Source={x:Reference MainSearchBar}, Path=Text}"></SearchBar>
+                   SearchCommandParameter="{Binding Source={x:Reference MainSearchBar}, Path=Text}"
+                   Text="{Binding SearchContacts}"></SearchBar>
         </Frame>
 
       <Frame Grid.Row="1">
         <ListView x:Name="DataListView" 
                   ItemsSource="{Binding Users}"
-                  IsRefreshing="{Binding ISBusy}"
-                  Refreshing="DataListView_Refreshing"
+                  IsRefreshing="{Binding ISBusy, Mode=TwoWay}"
+                 
                   >
           <ListView.ItemTemplate>
             <DataTemplate>

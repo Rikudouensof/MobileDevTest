@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
@@ -15,6 +16,16 @@ namespace Steer73.FormsApp.Framework
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+    public void RPropertyChanged(string propertyName)
+    {
+      PropertyChangedEventHandler handler = PropertyChanged;
+      if (handler != null)
+      {
+        handler(this, new PropertyChangedEventArgs(propertyName));
+      }
+    }
+
+
+    public event PropertyChangedEventHandler PropertyChanged;
     }
 }
